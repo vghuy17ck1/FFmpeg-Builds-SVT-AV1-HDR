@@ -8,6 +8,10 @@ ffbuild_enabled() {
 }
 
 ffbuild_dockerbuild() {
+    if [[ $TARGET == winarm64 ]]; then
+        sed -i '1i#pragma clang diagnostic ignored "-Wunused-template"' src/hb-meta.hh src/hb-algs.hh
+    fi
+
     mkdir build && cd build
 
     local myconf=(

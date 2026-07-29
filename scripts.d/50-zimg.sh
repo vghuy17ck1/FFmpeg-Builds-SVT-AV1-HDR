@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_REPO="https://github.com/sekrit-twc/zimg.git"
-SCRIPT_COMMIT="fa52dee9ebd2d5bedb5a4068f72a4311ae88a419"
+SCRIPT_COMMIT="f819b14e8f39d1282400b0d9543e8ef73c1b2bbd"
 
 ffbuild_enabled() {
     return 0
@@ -13,6 +13,10 @@ ffbuild_dockerdl() {
 }
 
 ffbuild_dockerbuild() {
+    if [[ $TARGET == winarm64 ]]; then
+        sed -i '1i#include <exception>' src/zimg/api/zimg.cpp
+    fi
+
     ./autogen.sh
 
     local myconf=(

@@ -8,6 +8,10 @@ ffbuild_enabled() {
 }
 
 ffbuild_dockerbuild() {
+    if [[ $TARGET == winarm64 ]]; then
+        sed -i '1i#include <new>' src/polling_util.hpp
+    fi
+
     mkdir build && cd build
 
     local myconf=(

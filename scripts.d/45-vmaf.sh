@@ -11,6 +11,10 @@ ffbuild_dockerbuild() {
     # Kill build of unused and broken tools
     echo > libvmaf/tools/meson.build
 
+    if [[ $TARGET == winarm64 ]]; then
+        sed -i 's/\<swap(/vmaf_swap(/g' libvmaf/src/svm.cpp
+    fi
+
     mkdir build && cd build
 
     local myconf=(

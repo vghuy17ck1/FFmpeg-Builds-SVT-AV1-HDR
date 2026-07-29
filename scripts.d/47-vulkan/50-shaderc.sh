@@ -56,12 +56,3 @@ ffbuild_dockerbuild() {
 
     cp glslc/glslc /opt/glslc
 }
-
-ffbuild_configure() {
-    echo --enable-libshaderc
-}
-
-ffbuild_unconfigure() {
-    (( $(ffbuild_ffver) > 404 )) || return 0
-    echo --disable-libshaderc
-}
